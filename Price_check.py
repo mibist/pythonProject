@@ -53,11 +53,12 @@ class PriceMachine():
                 weight_index = i
         return product_index, price_index, weight_index
 
-    def export_to_html(self, fname='output.html'):
+    def export_to_html(self, fname='output.html'):  # ДОБАВИЛ <meta charset="UTF-8">
         result = '''
         <!DOCTYPE html>
         <html>
         <head>
+            <meta charset="UTF-8">
             <title>Позиции продуктов</title>
         </head>
         <body>
@@ -88,7 +89,7 @@ class PriceMachine():
         </html>
         '''
 
-        with open(fname, 'w') as f:
+        with open(fname, 'w', encoding='utf-8') as f:
             f.write(result)
 
     def find_text(self, text):
@@ -118,3 +119,4 @@ while True:
         break
     results = pm.find_text(search_text)
     pm.print_results(results)  # Вывод результатов поиска
+    pm.export_to_html()  # Экспорт результатов в HTML после каждого поиска (ДОБАВИЛ)
